@@ -1,0 +1,17 @@
+{
+
+  "image": "mohidmaretec/mohid_linux_exe",
+  "resources": {
+    "memory_mb": "5000",
+    "cpu_units": ""
+ },
+  "container": {
+    "entryPoint": [
+      "/bin/bash",
+      "-c"
+ ],
+    "command": [
+      "./mohid_ecopotential.sh"
+ ]
+  }
+}

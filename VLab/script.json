@@ -1,0 +1,9 @@
+{
+  "scripts": [
+    {
+      "repoPath": "mohid_ecopotential.sh",
+      "targetPath": "mohid_ecopotential.sh",
+      "pathType": "FILE"
+ }
+  ]
+}
