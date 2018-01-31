@@ -16,7 +16,7 @@
 
 #--------------- USER'S DEFINITION -----------------#
 
-export project_path='/home/aoliveira/projects/Ecopotential/MOHID'
+export project_path='/root/mohidtestdocker'
 
 #---------------------- DATES ----------------------
 begin_date="2010-10-01"                       #Y-M-D
