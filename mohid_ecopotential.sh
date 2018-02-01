@@ -41,7 +41,7 @@ export mohid_res_folder=${project_path}/res/
 ##################################################################
 
 #---------------------- BACKUP RESULTS FOLDERS PATHS ----------------------
-export results_timeseries_folder=${project_path}/SavedResults/
+export results_timeseries_folder=SavedResults/
 ############################################################################
 
 #---------------------- DAT FILES PATHS&NAMES ----------------------
