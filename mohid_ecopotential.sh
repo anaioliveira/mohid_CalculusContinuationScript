@@ -15,6 +15,7 @@
 ########################################################
 
 #--------------- USER'S DEFINITION -----------------#
+echo $LD_LIBRARY_PATH
 export TERM=xterm
 export project_path='/root/mohidtestdocker'
 
