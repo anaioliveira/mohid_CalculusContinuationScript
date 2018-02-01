@@ -15,7 +15,7 @@
 ########################################################
 
 #--------------- USER'S DEFINITION -----------------#
-
+export TERM=xterm
 export project_path='/root/mohidtestdocker'
 
 #---------------------- DATES ----------------------
