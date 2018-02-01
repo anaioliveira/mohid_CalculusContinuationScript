@@ -20,7 +20,7 @@
       "description": ".srvg",
       "name": "2D_TimeSerie",
       "valueSchema": "url",
-      "target": "SavedResults/2D_TimeSerie.srvg"
+      "target": "SavedResults/20101001/2D_TimeSerie.srvg"
  }
   ]
 }
