@@ -15,8 +15,8 @@
   "outputs": [
     {
       "id": "DataObject_0n95v5p",
-      "outputType": "daily",
-      "valueType": "timeserie",
+      "outputType": "individual",
+      "valueType": "value",
       "description": ".srvg",
       "name": "2D_TimeSerie",
       "valueSchema": "url",
