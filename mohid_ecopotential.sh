@@ -15,8 +15,10 @@
 ########################################################
 
 #--------------- USER'S DEFINITION -----------------#
-echo $LD_LIBRARY_PATH
 export TERM=xterm
+echo $LD_LIBRARY_PATH
+LD_LIBRARY_PATH=/root/apps/netcdf-4.4.1.1/lib:$LD_LIBRARY_PATH
+echo $LD_LIBRARY_PATH
 export project_path='/root/mohidtestdocker'
 
 #---------------------- DATES ----------------------
