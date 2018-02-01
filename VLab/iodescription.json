@@ -1,17 +1,4 @@
 {
-  "inputs": [
-    {
-      "id": "DataObject_0h3a3ff",
-      "inputType": "individual",
-      "valueType": "value",
-      "description": "URL to download the Sentinel 2A scene",
-      "name": "Sentinel 2A scene",
-      "obligation": true,
-      "hasDefault": false,
-      "valueSchema": "url",
-      "target": "data/s2.zip"
- }
-  ],
   "outputs": [
     {
       "id": "DataObject_0n95v5p",
