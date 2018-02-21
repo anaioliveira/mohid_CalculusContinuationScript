@@ -15,8 +15,12 @@
 ########################################################
 
 #--------------- USER'S DEFINITION -----------------#
-
-export project_path='/home/aoliveira/projects/Ecopotential/MOHID'
+export TERM=xterm
+echo $LD_LIBRARY_PATH
+LD_LIBRARY_PATH=/root/apps/zlib-1.2.11/lib:/root/apps/hdf5-1.8.15/lib:/root/apps/netcdf-4.4.1.1/lib:/opt/intel/compilers_and_libraries_2018.1.163/linux/compiler/lib/intel64_lin/
+echo $LD_LIBRARY_PATH
+export LD_LIBRARY_PATH
+export project_path='/root/mohidtestdocker'
 
 #---------------------- DATES ----------------------
 begin_date="2010-10-01"                       #Y-M-D
@@ -40,7 +44,7 @@ export mohid_res_folder=${project_path}/res/
 ##################################################################
 
 #---------------------- BACKUP RESULTS FOLDERS PATHS ----------------------
-export results_timeseries_folder=${project_path}/SavedResults/
+export results_timeseries_folder=SavedResults/
 ############################################################################
 
 #---------------------- DAT FILES PATHS&NAMES ----------------------

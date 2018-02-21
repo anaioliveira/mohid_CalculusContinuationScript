@@ -15,12 +15,12 @@
   "outputs": [
     {
       "id": "DataObject_0n95v5p",
-      "outputType": "daily",
-      "valueType": "timeserie",
+      "outputType": "individual",
+      "valueType": "value",
       "description": ".srvg",
       "name": "2D_TimeSerie",
       "valueSchema": "url",
-      "target": "SavedResults/2D_TimeSerie.srvg"
+      "target": "SavedResults/20101001/2D_TimeSerie.srvg"
  }
   ]
 }
