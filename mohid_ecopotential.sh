@@ -24,7 +24,10 @@ end_date="2010-10-19"                         #Y-M-D
 ####################################################
 
 #---------------------- OTHER INFO ----------------------
-
+export join_timeserie_folder=/SavedResults
+export config_file_temp_joinTimeSerie=/home/aoliveira/projects/Ecopotential/joinTimeSerie/joinTimeSeries_template.dat
+export config_file_joinTimeSerie=/home/aoliveira/projects/Ecopotential/joinTimeSerie/joinTimeSeries.dat
+export joinTimeSerie_script_folder=/home/aoliveira/projects/Ecopotential/joinTimeSerie
 #########################################################
 
 #---------------------- LAI FILE PATH ----------------------
@@ -256,7 +259,7 @@ GET_BOUNDARRY_LAI(){
             echo "DATA_COLUMN              : 5" >> "${mohid_data_folder}/Vegetation_1.dat"
             echo "DEFAULTVALUE             : 1." >> "${mohid_data_folder}/Vegetation_1.dat"
             echo "REMAIN_CONSTANT          : 0" >> "${mohid_data_folder}/Vegetation_1.dat"
-            echo "TIME_SERIE               : 1" >> "${mohid_data_folder}/Vegetation_1.dat"
+            echo "TIME_SERIE               : 0" >> "${mohid_data_folder}/Vegetation_1.dat"
             echo "OUTPUT_HDF               : 0" >> "${mohid_data_folder}/Vegetation_1.dat"
             echo "<endproperty>" >> "${mohid_data_folder}/Vegetation_1.dat"
             export lai_boundary_block_exists=1
@@ -271,6 +274,27 @@ DELETE_BOUNDARY_LAI_BLOCK(){
         rm "${mohid_data_folder}/Vegetation_1.dat"
         mv "${mohid_data_folder}/Vegetation_1.dat".tmp "${mohid_data_folder}/Vegetation_1.dat"
     done
+}
+
+CHANGE_TEMPLATE_JOINTIMESERIE(){
+
+    #Insert dates
+    start_day=$(date -d "${1} 00:00:00" "+%Y %m %d %H %M %S")
+    end_day=$(date -d "${2} 00:00:00" "+%Y %m %d %H %M %S")
+    
+    perl -pe "s?begin_date?${start_day}?" ${config_file_temp_joinTimeSerie}    > "${config_file_joinTimeSerie}.tmp"
+    rm "${config_file_joinTimeSerie}"
+    mv "${config_file_joinTimeSerie}.tmp" "${config_file_joinTimeSerie}"
+    
+    perl -pe "s?end_date?${end_day}?" ${config_file_joinTimeSerie}    > "${config_file_joinTimeSerie}.tmp"
+    rm "${config_file_joinTimeSerie}"
+    mv "${config_file_joinTimeSerie}.tmp" "${config_file_joinTimeSerie}"
+    
+    #Insert folders - TIMESERIES_PATH
+    perl -pe "s?timeseries_to_join?${project_path}${join_timeserie_folder}?" ${config_file_joinTimeSerie}    > "${config_file_joinTimeSerie}.tmp"
+    rm "${config_file_joinTimeSerie}"
+    mv "${config_file_joinTimeSerie}.tmp" "${config_file_joinTimeSerie}"
+
 }
 
 #--------------------------------------------------------------#
@@ -290,7 +314,7 @@ date1_s=${begin_date_s}
 
 VERIFY_ACTIVE_MODULES
 
-while [ $date1_s -le $end_date_s ]; do
+while [ $date1_s -lt $end_date_s ]; do
 
     echo
         echo "#######################>     $date1     <#######################"
@@ -331,10 +355,11 @@ while [ $date1_s -le $end_date_s ]; do
     
     #Copy the results to the backup results folder    
     #TimeSeries
-    if ! [ -d ${results_timeseries_folder}${date1} ]; then
-        mkdir ${results_timeseries_folder}${date1}
+    folder_name=$(date -d "${date1}" "+%Y-%m-%d")"_"$(date -d "${date2}" "+%Y-%m-%d")
+    if ! [ -d ${results_timeseries_folder}${folder_name} ]; then
+        mkdir ${results_timeseries_folder}${folder_name}
     fi
-    cp -R "${mohid_res_folder}Run1/." "${results_timeseries_folder}${date1}"
+    cp -R "${mohid_res_folder}Run1/." "${results_timeseries_folder}${folder_name}"
     
     #Activate the continuous keywords and add the path to fin files to nomfich
     if [ $CONTINUOUS = 0 ]; then
@@ -362,3 +387,22 @@ done
 #Clear nomfich file and turn Contiuous to 0
 cp ${nomfich_file} nomfich.dat
 CHANGE_CONTINUOUS $run_off_is_active $drainage_net_is_active $porous_media_is_active $vegetation_is_active $reservoirs_is_active $run_off_prop_is_active $porous_media_prop_is_active $CONTINUOUS
+
+#Join time series script
+CHANGE_TEMPLATE_JOINTIMESERIE $begin_date $end_date
+cd ${joinTimeSerie_script_folder}
+perl joinTimeSeries.pl -c=${config_file_joinTimeSerie}
+
+#Manage folders
+cd ${project_path}
+cp -R Output/* ${join_timeserie_folder}
+rm -r Output
+rm -r Output1
+rm -r Output2
+
+#Add <EndTimeSerie> string to file
+cd ${project_path}${join_timeserie_folder}
+srvg_file=`readlink -e *.srvg`
+echo ${srvg_file}
+echo "<EndTimeSerie>" >> ${srvg_file}
+

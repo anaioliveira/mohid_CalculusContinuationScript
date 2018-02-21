@@ -1,0 +1,22 @@
+?# Comentários
+
+TIMESERIES_PATH    : /home/aoliveira/projects/Ecopotential/MOHID/SavedResults
+
+RUN_TYPE    : NOPE  ## NOPE|OPE
+## NOPE (Non Operational) erase all joined data and start a new fresh join, appending all data;
+## OPE  (Operational)     preserve history data but update with new data;
+
+START                         : 2010 10 01 00 00 00
+END                           : 2010 10 19 00 00 00
+
+PUBLISH_PATH            : /home/aoliveira/projects/Ecopotential/MOHID/Output
+STORAGE_PATH            : /home/aoliveira/projects/Ecopotential/MOHID/Output1
+BACKUP_PATH             : /home/aoliveira/projects/Ecopotential/MOHID/Output2
+
+<begin_station_list>
+2D_TimeSerie
+<end_station_list>
+ 
+<begin_extension_list>
+srvg
+<end_extension_list>
