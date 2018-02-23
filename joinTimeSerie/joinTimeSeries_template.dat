@@ -9,9 +9,9 @@ RUN_TYPE    : NOPE  ## NOPE|OPE
 START                         : begin_date
 END                           : end_date
 
-PUBLISH_PATH            : /home/aoliveira/projects/Ecopotential/MOHID/Output
-STORAGE_PATH            : /home/aoliveira/projects/Ecopotential/MOHID/Output1
-BACKUP_PATH             : /home/aoliveira/projects/Ecopotential/MOHID/Output2
+PUBLISH_PATH            : ../Output
+STORAGE_PATH            : ../Output1
+BACKUP_PATH             : ../Output2
 
 <begin_station_list>
 2D_TimeSerie

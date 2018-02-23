@@ -29,9 +29,9 @@ end_date="2010-10-19"                         #Y-M-D
 
 #---------------------- OTHER INFO ----------------------
 export join_timeserie_folder=/SavedResults
-export config_file_temp_joinTimeSerie=/home/aoliveira/projects/Ecopotential/joinTimeSerie/joinTimeSeries_template.dat
-export config_file_joinTimeSerie=/home/aoliveira/projects/Ecopotential/joinTimeSerie/joinTimeSeries.dat
-export joinTimeSerie_script_folder=/home/aoliveira/projects/Ecopotential/joinTimeSerie
+export config_file_temp_joinTimeSerie=${project_path}/joinTimeSerie/joinTimeSeries_template.dat
+export config_file_joinTimeSerie=${project_path}/joinTimeSerie/joinTimeSeries.dat
+export joinTimeSerie_script_folder=${project_path}/joinTimeSerie
 #########################################################
 
 #---------------------- LAI FILE PATH ----------------------
@@ -44,7 +44,7 @@ export mohid_res_folder=${project_path}/res/
 ##################################################################
 
 #---------------------- BACKUP RESULTS FOLDERS PATHS ----------------------
-export results_timeseries_folder=SavedResults/
+export results_timeseries_folder=${project_path}/SavedResults/
 ############################################################################
 
 #---------------------- DAT FILES PATHS&NAMES ----------------------
@@ -399,7 +399,7 @@ perl joinTimeSeries.pl -c=${config_file_joinTimeSerie}
 
 #Manage folders
 cd ${project_path}
-cp -R Output/* ${join_timeserie_folder}
+cp -R Output/. ${project_path}${join_timeserie_folder}
 rm -r Output
 rm -r Output1
 rm -r Output2
